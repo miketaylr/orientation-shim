@@ -18,3 +18,9 @@ Navigate to `file:///mnt/sdcard/`, and click on the xpi to install.
 ### Testing
 
 After installing, navigate to [http://miketaylr.github.io/orientation-shim/](http://miketaylr.github.io/orientation-shim/) to mess with the manual tests.
+
+### License
+
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
