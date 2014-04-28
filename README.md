@@ -16,3 +16,5 @@ Move to your device, assuming your device is attached via USB and has debugging 
 Navigate to `file:///mnt/sdcard/`, and click on the xpi to install.
 
 ### Testing
+
+After installing, navigate to [http://miketaylr.github.io/orientation-shim/](http://miketaylr.github.io/orientation-shim/) to mess with the manual tests.
