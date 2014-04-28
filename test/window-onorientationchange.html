@@ -1,0 +1,14 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<!DOCTYPE html>
+<title>orientation change test</title>
+<style>body{font-size:200px;}</style>
+<body></body>
+<script>
+document.body.innerHTML = window.orientation;
+window.onorientationchange = function(){
+  document.body.innerHTML = window.orientation;
+}
+</script>
