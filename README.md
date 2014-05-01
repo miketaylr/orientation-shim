@@ -2,18 +2,13 @@
 
 This add-on adds support for the non-standard window.orientation DOM property and the "onorientationchange" event for Firefox for Android.
 
-### Building
+There's also a `sdk-version` branch with a version built with the Add-On SDK, if you're into that sort of thing. This version is a [bootstrapped](https://developer.mozilla.org/en-US/Add-ons/Bootstrapped_extensions) port of that.
 
-With cfx in your path:
+### Building & Installation
 
-`cfx xpi --force-mobile`
+`./build`
 
-### Installation
-
-Move to your device, assuming your device is attached via USB and has debugging enabled:
-`adb push window-orientation-shim.xpi /mnt/sdcard/`
-
-Navigate to `file:///mnt/sdcard/`, and click on the xpi to install.
+This should open a prompt in Nightly on your device if it's connected. You can fiddle with that in `config_build.sh`.
 
 ### Testing
 
