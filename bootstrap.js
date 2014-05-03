@@ -18,7 +18,7 @@ const orientationMap = {
   "landscape-secondary": -90
 }
 
-let orientationShimHandler = {
+let orientationShim = {
   init: function() {
     Services.obs.addObserver(this, "content-document-global-created", false);
   },
@@ -77,9 +77,9 @@ function loadIntoWindow(window) {
   if (!window)
     return;
 
-  orientationShimHandler.init();
+  orientationShim.init();
   window.screen.onmozorientationchange = function() {
-    orientationShimHandler.handleChange(window);
+    orientationShim.handleChange(window);
   }
 }
 
@@ -88,7 +88,7 @@ function unloadFromWindow(window) {
     return;
 
   // Remove Observers
-  orientationShimHandler.uninit();
+  orientationShim.uninit();
 }
 
 
