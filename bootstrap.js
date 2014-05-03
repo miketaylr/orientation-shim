@@ -72,6 +72,12 @@ function loadIntoWindow(window) {
     return;
 
   orientationShim.init();
+  window.BrowserApp.deck.addEventListener("TabSelect", (e) => {
+    // Orientation may have changed between opening or selecting tabs,
+    // so trigger a manual update when a new tab is selected.
+    let win = e.target.contentWindow;
+    orientationShim.handleChange(win);
+  });
 }
 
 function unloadFromWindow(window) {
