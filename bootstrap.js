@@ -26,25 +26,27 @@ let orientationShim = {
     //set window.orientation as soon as the global window is created,
     //before any JS in the document runs
     if (topic == "content-document-global-created") {
-      let window = subject;
-      this.setOrientation(window, window.screen.mozOrientation);
+      let win = subject;
+      this.setOrientation(win, win.screen.mozOrientation);
+      win.screen.onmozorientationchange = function() {
+        orientationShim.handleChange(win);
+      }
     }
+  },
+  getDOMWindow: function(window) {
+    return window.wrappedJSObject || window;
+  },
+  setOrientation: function(window, orientation) {
+    this.getDOMWindow(window)["orientation"] = orientationMap[orientation];
   },
   callInlineBodyHandler: function(window) {
     // Check for inline onorientationevent handler on body element and execute
     // (in Apple's docs: <body onorientationchange="updateOrientation();">)
-    let document = this.getDOMWindow(window).document;
-    let script = document.createElement('script');
-    let handler = document.body.getAttribute('onorientationchange');
-    script.textContent = handler;
-    document.body.appendChild(script);
+    let doc = this.getDOMWindow(window).document;
+    let script = doc.createElement('script');
+    script.textContent = doc.body.getAttribute('onorientationchange');
+    doc.head.appendChild(script);
     script.parentNode.removeChild(script);
-  },
-  dispatchOrientationEvent: function(window) {
-    let orientationEvent = new window.CustomEvent("orientationchange", {bubbles: true,
-                                                                        cancelable: true});
-    // Dispatch on document, as it will bubble up to window
-    window.content.document.dispatchEvent(orientationEvent);
   },
   callWindowHandler: function(window) {
     let win = this.getDOMWindow(window);
@@ -52,20 +54,20 @@ let orientationShim = {
       win.onorientationchange.call(null);
     }
   },
+  dispatchOrientationEvent: function(window) {
+    let props = {bubbles: true, cancelable: true}
+    let orientationEvent = new window.Event("orientationchange", props);
+    // Dispatch on document, as it will bubble up to window.
+    window.document.dispatchEvent(orientationEvent);
+  },
   handleChange: function(window) {
     let win = window.content;
     this.setOrientation(win, window.screen.mozOrientation);
     this.dispatchOrientationEvent(win);
     this.callWindowHandler(win);
-    if (win.document.body.getAttribute('onorientationchange')) {
+    if (win.document.body.hasAttribute('onorientationchange')) {
       this.callInlineBodyHandler(win);
     }
-  },
-  getDOMWindow: function(win) {
-    return win.wrappedJSObject || win;
-  },
-  setOrientation: function(window, orientation) {
-    this.getDOMWindow(window)["orientation"] = orientationMap[orientation];
   },
   uninit: function() {
     Services.obs.removeObserver(this, "content-document-global-created");
@@ -73,14 +75,11 @@ let orientationShim = {
 };
 
 function loadIntoWindow(window) {
-  //window here is a chrome window, not a dom window
+  // window here is a chrome window, not a dom window
   if (!window)
     return;
 
   orientationShim.init();
-  window.screen.onmozorientationchange = function() {
-    orientationShim.handleChange(window);
-  }
 }
 
 function unloadFromWindow(window) {
