@@ -8,7 +8,7 @@ There's also a `sdk-version` branch with a version built with the Add-On SDK, if
 
 `./build`
 
-This should open a prompt in Nightly on your device if it's connected. You can fiddle with that in `config_build.sh`.
+This should open an installation prompt in Firefox for Android on your device if it's connected. You can change targets in `config_build.sh`. After installation, the `xpi` is moved to the `bin/` directory.
 
 ### Testing
 
