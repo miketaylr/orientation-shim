@@ -1,15 +1,7 @@
-const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cu = Components.utils;
 
 Cu.import("resource://gre/modules/Services.jsm");
-
-let console = Cc["@mozilla.org/consoleservice;1"].
-              getService(Ci.nsIConsoleService);
-
-let adbLog = function(msg) {
-  console.logStringMessage(msg);
-}
 
 const orientationMap = {
   "portrait-primary": 0,
@@ -86,7 +78,6 @@ function unloadFromWindow(window) {
   if (!window)
     return;
 
-  // Remove Observers
   orientationShim.uninit();
 }
 
