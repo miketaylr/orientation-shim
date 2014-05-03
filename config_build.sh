@@ -10,4 +10,4 @@ ROOT_DIRS=
 BEFORE_BUILD=
 AFTER_BUILD="mv orientation-shim.xpi bin"
 PUSH_TO_DEVICE=1
-ANDROID_APP_ID=org.mozilla.fennec
+ANDROID_APP_ID=org.mozilla.firefox
