@@ -1,9 +1,0 @@
-{
-  "name": "window-orientation-shim",
-  "title": "window.orientaiton shim",
-  "id": "jid1-UPBBVqxsAbJE5w",
-  "description": "Shims support for window.orientation based on screen.mozOrientation.",
-  "author": "Mike Taylor",
-  "license": "MPL 2.0",
-  "version": "0.2"
-}
