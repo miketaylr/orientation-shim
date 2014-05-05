@@ -66,18 +66,20 @@ let orientationShim = {
   }
 };
 
+function handleTabSelect(e) {
+  // Orientation may have changed between opening or selecting tabs,
+  // so trigger a manual update when a new tab is selected.
+  let win = e.target.contentWindow;
+  orientationShim.handleChange(win);
+}
+
 function loadIntoWindow(window) {
   // window here is a chrome window, not a dom window
   if (!window)
     return;
 
   orientationShim.init();
-  window.BrowserApp.deck.addEventListener("TabSelect", (e) => {
-    // Orientation may have changed between opening or selecting tabs,
-    // so trigger a manual update when a new tab is selected.
-    let win = e.target.contentWindow;
-    orientationShim.handleChange(win);
-  });
+  window.BrowserApp.deck.addEventListener("TabSelect", handleTabSelect);
 }
 
 function unloadFromWindow(window) {
@@ -85,6 +87,8 @@ function unloadFromWindow(window) {
     return;
 
   orientationShim.uninit();
+  orientationShim = null;
+  window.BrowserApp.deck.removeEventListener("TabSelect", handleTabSelect);
 }
 
 
