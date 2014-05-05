@@ -19,3 +19,5 @@ After installing, navigate to [http://miketaylr.github.io/orientation-shim/](htt
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+Parts of this code inspired by https://gist.github.com/richtr/2966043, which is licensed under the Apache License, Version 2.0.
