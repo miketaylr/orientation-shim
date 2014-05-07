@@ -4,6 +4,8 @@ This add-on adds support for the non-standard window.orientation DOM property an
 
 There's also a `sdk-version` branch with a version built with the Add-On SDK, if you're into that sort of thing. This version is a [bootstrapped](https://developer.mozilla.org/en-US/Add-ons/Bootstrapped_extensions) port of that.
 
+*CAVEAT EMPTOR*: There are certain tablets which consider themselves landscape-primary (see http://www.matthewgifford.com/blog/2011/12/22/a-misconception-about-window-orientation/). If you're using one of these devices, please file a bug. One solution might be an options page where you can "calibrate" the add-on.
+
 ### Building & Installation
 
 `./build`
