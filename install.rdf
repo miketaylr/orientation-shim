@@ -4,7 +4,7 @@
     <em:id>orientation-shim@miketaylr.com</em:id>
     <em:type>2</em:type>
     <em:name>window.orientation shim</em:name>
-    <em:version>0.3</em:version>
+    <em:version>0.3.1</em:version>
     <em:bootstrap>true</em:bootstrap>
     <em:description>Shims support for window.orientation based on screen.mozOrientation.</em:description>
     <em:creator>Mike Taylor</em:creator>
