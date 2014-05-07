@@ -20,9 +20,9 @@ let orientationShim = {
     if (topic == "content-document-global-created") {
       let win = subject;
       this.setOrientation(win, win.screen.mozOrientation);
-      win.screen.onmozorientationchange = function() {
-        orientationShim.handleChange(win);
-      }
+      win.screen.addEventListener("mozorientationchange", e => {
+        this.handleChange(win)
+      });
     }
   },
   getDOMWindow: function(window) {
